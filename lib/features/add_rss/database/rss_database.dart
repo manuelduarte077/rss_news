@@ -49,7 +49,7 @@ class DatabaseProvider {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
             link TEXT,
-            description TEXT,
+            description TEXT
           );
       """;
 }

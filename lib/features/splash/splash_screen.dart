@@ -32,7 +32,7 @@ class _SplasScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('News of the world'),
+        child: Text('News of the world', style: TextStyle(fontSize: 30)),
       ),
     );
   }

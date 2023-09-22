@@ -1,10 +1,10 @@
-import 'package:rss_news/features/add_rss/database/todo_database.dart';
+import 'package:rss_news/features/add_rss/database/rss_database.dart';
 import 'package:rss_news/features/add_rss/model/rss_model.dart';
 
 class DatabaseController {
   final dbClient = DatabaseProvider.dbProvider;
 
-  Future<int> saveRSS(RssModel rss) async {
+  Future<int> saveRss(RssModel rss) async {
     // the code below is used to get the access to the db getter
     final db = await dbClient.db;
 

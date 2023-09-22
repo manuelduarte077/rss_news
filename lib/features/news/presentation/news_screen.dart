@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// appBar: AppBar(
-//   actions: [
-//     IconButton(
-//       icon: const Icon(Icons.add),
-//       onPressed: () {
-//         context.push('/rss/add');
-//       },
-//     ),
-//   ],
-// ),
-
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
@@ -24,6 +13,7 @@ class NewsScreen extends StatelessWidget {
           child: Column(
             children: [
               _DiscoverNews(),
+              SizedBox(height: 20),
               _CategoryNews(),
             ],
           ),
@@ -60,8 +50,6 @@ class _CategoryNews extends StatelessWidget {
                 ),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -112,43 +100,66 @@ class _DiscoverNews extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Discover',
-            style: theme.titleLarge?.copyWith(color: Colors.deepPurple),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            'News from all over the world',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'Search',
-              hintStyle: theme.titleSmall?.copyWith(color: Colors.grey),
-              fillColor: Colors.grey.shade200,
-              filled: true,
-              prefixIcon: const Icon(Icons.search, color: Colors.grey),
-              suffixIcon: const RotatedBox(
-                quarterTurns: 1,
-                child: Icon(
-                  Icons.tune,
-                  color: Colors.grey,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide.none,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              'News of the world',
+              style: theme.titleLarge?.copyWith(color: Colors.deepPurple),
+            ),
+
+            /// Add the button here
+            const Spacer(),
+            PopupMenuButton(
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(
+                    value: 'add_rss',
+                    child: Text('Add RSS'),
+                  ),
+                  const PopupMenuItem(
+                    value: 'list_rss',
+                    child: Text('List RSS'),
+                  ),
+                ];
+              },
+              onSelected: (value) {
+                if (value == 'add_rss') {
+                  context.push('/rss/add');
+                }
+
+                if (value == 'list_rss') {
+                  context.push('/rss');
+                }
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        TextFormField(
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+            hintText: 'Search',
+            hintStyle: theme.titleSmall?.copyWith(color: Colors.grey),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            prefixIcon: const Icon(Icons.search, color: Colors.grey),
+            suffixIcon: const RotatedBox(
+              quarterTurns: 1,
+              child: Icon(
+                Icons.tune,
+                color: Colors.grey,
               ),
             ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide.none,
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
