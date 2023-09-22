@@ -9,5 +9,19 @@ class AppTheme {
 
     /// Font Family
     fontFamily: GoogleFonts.redHatDisplay().fontFamily,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w800,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
   );
 }

@@ -1,10 +1,193 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class NewsScreem extends StatelessWidget {
-  const NewsScreem({super.key});
+// appBar: AppBar(
+//   actions: [
+//     IconButton(
+//       icon: const Icon(Icons.add),
+//       onPressed: () {
+//         context.push('/rss/add');
+//       },
+//     ),
+//   ],
+// ),
+
+class NewsScreen extends StatelessWidget {
+  const NewsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          child: Column(
+            children: [
+              _DiscoverNews(),
+              _CategoryNews(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CategoryNews extends StatelessWidget {
+  const _CategoryNews({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 20,
+        itemBuilder: ((context, index) {
+          return GestureDetector(
+            onTap: () {
+              context.push('/news/detail');
+            },
+            child: Row(
+              children: [
+                const ImageContainer(
+                  height: 80,
+                  width: 80,
+                  margin: EdgeInsets.all(10),
+                  borderRadius: 5,
+                  imageUrl: 'https://picsum.photos/200/300',
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        style: theme.titleMedium,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.schedule,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            '2 hours ago',
+                            style: theme.titleSmall,
+                          ),
+                          const SizedBox(width: 20),
+                          const Icon(
+                            Icons.visibility,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            '2.5k views',
+                            style: theme.titleSmall,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class _DiscoverNews extends StatelessWidget {
+  const _DiscoverNews({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.2,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Discover',
+            style: theme.titleLarge?.copyWith(color: Colors.deepPurple),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            'News from all over the world',
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: 'Search',
+              hintStyle: theme.titleSmall?.copyWith(color: Colors.grey),
+              fillColor: Colors.grey.shade200,
+              filled: true,
+              prefixIcon: const Icon(Icons.search, color: Colors.grey),
+              suffixIcon: const RotatedBox(
+                quarterTurns: 1,
+                child: Icon(
+                  Icons.tune,
+                  color: Colors.grey,
+                ),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ImageContainer extends StatelessWidget {
+  const ImageContainer({
+    Key? key,
+    this.height = 125,
+    this.borderRadius = 20,
+    required this.width,
+    required this.imageUrl,
+    this.padding,
+    this.margin,
+    this.child,
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+  final String imageUrl;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final double borderRadius;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      margin: margin,
+      padding: padding,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        image: DecorationImage(
+          image: NetworkImage(imageUrl),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: child,
+    );
   }
 }

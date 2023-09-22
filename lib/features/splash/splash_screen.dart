@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class SplasScreen extends StatefulWidget {
-  const SplasScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplasScreen> createState() => _SplasScreenState();
+  State<SplashScreen> createState() => _SplasScreenState();
 }
 
-class _SplasScreenState extends State<SplasScreen> {
+class _SplasScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() async {
+    await Future.delayed(const Duration(seconds: 3), goToHome);
+  }
+
+  void goToHome() {
+    context.go('/news');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
