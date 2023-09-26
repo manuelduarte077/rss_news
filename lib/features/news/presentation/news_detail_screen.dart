@@ -11,6 +11,7 @@ class NewsDetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
             expandedHeight: 350,
             elevation: 0,
             pinned: true,
@@ -65,20 +66,10 @@ class NewsDetailsScreen extends StatelessWidget {
                       ),
                       Chip(
                         avatar: const Icon(
-                          Icons.lock_clock_outlined,
+                          Icons.bookmark_border_outlined,
                           color: Colors.white,
                         ),
-                        label: const Text('2 h'),
-                        backgroundColor: Colors.deepPurple,
-                        labelStyle:
-                            theme.titleSmall?.copyWith(color: Colors.white),
-                      ),
-                      Chip(
-                        avatar: const Icon(
-                          Icons.visibility_outlined,
-                          color: Colors.white,
-                        ),
-                        label: const Text('2.5k'),
+                        label: const Text('Save'),
                         backgroundColor: Colors.deepPurple,
                         labelStyle:
                             theme.titleSmall?.copyWith(color: Colors.white),

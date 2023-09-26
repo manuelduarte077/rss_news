@@ -53,34 +53,17 @@ class _CategoryNews extends StatelessWidget {
                     children: [
                       Text(
                         'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.clip,
                         style: theme.titleMedium,
                       ),
                       const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.schedule,
-                            size: 18,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            '2 hours ago',
-                            style: theme.titleSmall,
-                          ),
-                          const SizedBox(width: 20),
-                          const Icon(
-                            Icons.visibility,
-                            size: 18,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            '2.5k views',
-                            style: theme.titleSmall,
-                          )
-                        ],
-                      )
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.titleSmall,
+                      ),
                     ],
                   ),
                 ),
