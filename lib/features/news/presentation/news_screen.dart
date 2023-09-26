@@ -39,35 +39,38 @@ class _CategoryNews extends StatelessWidget {
             onTap: () {
               context.push('/news/detail');
             },
-            child: Row(
-              children: [
-                const ImageContainer(
-                  height: 80,
-                  width: 80,
-                  margin: EdgeInsets.all(10),
-                  borderRadius: 5,
-                  imageUrl: 'https://picsum.photos/200/300',
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: theme.titleMedium,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.titleSmall,
-                      ),
-                    ],
+            child: Hero(
+              tag: 'news_$index',
+              child: Row(
+                children: [
+                  const ImageContainer(
+                    height: 80,
+                    width: 80,
+                    margin: EdgeInsets.all(10),
+                    borderRadius: 5,
+                    imageUrl: 'https://picsum.photos/200/300',
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                          style: theme.titleMedium,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.titleSmall,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         }),

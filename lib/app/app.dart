@@ -14,7 +14,7 @@ class RssNews extends StatelessWidget {
       title: 'Rss News',
       theme: AppTheme.appTheme,
       themeMode: ThemeMode.system,
-      routerConfig: appRouter,
+      routerConfig: AppNavigation.router,
     );
   }
 }
