@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rss_news/features/add_rss/presentation/add_rss_scree.dart';
 import 'package:rss_news/features/add_rss/presentation/list_rss_screen.dart';
+import 'package:rss_news/features/bookmark/presentation/bookmark_screen.dart';
 import 'package:rss_news/features/news/presentation/news_detail_screen.dart';
 import 'package:rss_news/features/news/presentation/news_screen.dart';
 import 'package:rss_news/features/splash/splash_screen.dart';
@@ -55,6 +56,12 @@ class AppNavigation {
             builder: (context, state) => const AddRssNewScreen(),
           ),
         ],
+      ),
+
+      /// Bookmark
+      GoRoute(
+        path: '/bookmark',
+        builder: (context, state) => const BookmarkScreen(),
       ),
     ],
   );
