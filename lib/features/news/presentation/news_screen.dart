@@ -39,38 +39,36 @@ class _CategoryNews extends StatelessWidget {
             onTap: () {
               context.push('/news/detail');
             },
-            child: Hero(
-              tag: 'news_$index',
-              child: Row(
-                children: [
-                  const ImageContainer(
+            child: Row(
+              children: [
+                Hero(
+                  tag: 'image_$index',
+                  child: const ImageContainer(
                     height: 80,
                     width: 80,
                     margin: EdgeInsets.all(10),
-                    borderRadius: 5,
                     imageUrl: 'https://picsum.photos/200/300',
                   ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
-                          style: theme.titleMedium,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.titleSmall,
-                        ),
-                      ],
-                    ),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        style: theme.titleMedium,
+                      ),
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.titleSmall,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }),
@@ -109,6 +107,10 @@ class _DiscoverNews extends StatelessWidget {
                     value: 'list_rss',
                     child: Text('List RSS'),
                   ),
+                  const PopupMenuItem(
+                    value: 'bookmark',
+                    child: Text('Bookmark'),
+                  ),
                 ];
               },
               onSelected: (value) {
@@ -119,6 +121,10 @@ class _DiscoverNews extends StatelessWidget {
                 if (value == 'list_rss') {
                   context.push('/rss');
                 }
+
+                if (value == 'bookmark') {
+                  context.push('/bookmark');
+                }
               },
             ),
           ],
@@ -126,7 +132,7 @@ class _DiscoverNews extends StatelessWidget {
         const SizedBox(height: 20),
         TextFormField(
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+            contentPadding: EdgeInsets.zero,
             hintText: 'Search',
             hintStyle: theme.titleSmall?.copyWith(color: Colors.grey),
             fillColor: Colors.grey.shade200,
@@ -154,7 +160,7 @@ class ImageContainer extends StatelessWidget {
   const ImageContainer({
     Key? key,
     this.height = 125,
-    this.borderRadius = 20,
+    this.borderRadius = 2,
     required this.width,
     required this.imageUrl,
     this.padding,
@@ -178,7 +184,7 @@ class ImageContainer extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           image: NetworkImage(imageUrl),
           fit: BoxFit.cover,

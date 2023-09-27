@@ -88,7 +88,7 @@ class NewsDetailsScreen extends StatelessWidget {
                   /// Detail
                   const SizedBox(height: 16),
                   Text(
-                    'Capture the beauty that catches your eye with a mirrorless camera that you don t want to lose. Capture the beauty that catches your eye with a mirrorless camerathat you don t want to lose.',
+                    'Capture the beauty that catches your eye with a mirrorless camera that you don t want to lose.\n \nCapture the beauty that catches your eye with a mirrorless camerathat you don t want to lose. Capture the beauty that catches your eye with a mirrorless camera that you don t want to lose. Capture the beauty that catches your eye with a mirrorless camerathat you don t want to lose. \n \n Capture the beauty that catches your eye with a mirrorless camerathat you don t want to lose. Capture the beauty that catches your eye with a mirrorless camera that you don t want to lose. Capture the beauty that catches your eye with a mirrorless camerathat you don t want to lose.',
                     style: theme.titleSmall,
                   ),
 
@@ -101,7 +101,7 @@ class NewsDetailsScreen extends StatelessWidget {
                       itemCount: 5,
                       itemBuilder: (context, index) => Container(
                         margin: const EdgeInsets.only(right: 16),
-                        width: 150,
+                        width: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: const DecorationImage(
@@ -112,6 +112,36 @@ class NewsDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+
+                  /// Author
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            NetworkImage('https://picsum.photos/200/300'),
+                      ),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Manuel D.',
+                            style: theme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Published 2 hours ago',
+                            style: theme.titleSmall?.copyWith(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
