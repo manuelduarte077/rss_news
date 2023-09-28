@@ -65,9 +65,13 @@ class NewsDetailsScreen extends StatelessWidget {
                             theme.titleSmall?.copyWith(color: Colors.white),
                       ),
                       Chip(
-                        avatar: const Icon(
-                          Icons.bookmark_border_outlined,
+                        avatar: IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            print('Save');
+                          },
                           color: Colors.white,
+                          icon: const Icon(Icons.bookmark_border),
                         ),
                         label: const Text('Save'),
                         backgroundColor: Colors.deepPurple,

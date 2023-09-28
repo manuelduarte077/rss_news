@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:rss_news/controller/xml_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+Future<void> _launchInBrowser(Uri url) async {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.inAppWebView,
+  )) {
+    throw Exception('Could not launch $url');
+  }
+}
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    final feedProvider = Provider.of<XMLHandler>(context);
+
+    return Scaffold(
+      body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
@@ -19,6 +33,10 @@ class NewsScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {feedProvider.getXmlFromUrl('')},
+        child: const Icon(Icons.refresh),
+      ),
     );
   }
 }
@@ -29,46 +47,41 @@ class _CategoryNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
+    final feedProvider = Provider.of<XMLHandler>(context);
 
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: 20,
+        itemCount: feedProvider.feedItems.length,
         itemBuilder: ((context, index) {
+          final item = feedProvider.feedItems[index];
+
           return GestureDetector(
             onTap: () {
-              context.push('/news/detail');
+              _launchInBrowser(Uri.parse(item['link']!));
             },
-            child: Row(
-              children: [
-                Hero(
-                  tag: 'image_$index',
-                  child: const ImageContainer(
-                    height: 80,
-                    width: 80,
-                    margin: EdgeInsets.all(10),
-                    imageUrl: 'https://picsum.photos/200/300',
-                  ),
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade200,
+              ),
+              child: ListTile(
+                minVerticalPadding: 10,
+                title: Text(
+                  item['title']!,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                  style: theme.titleSmall,
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: theme.titleMedium,
-                      ),
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.titleSmall,
-                      ),
-                    ],
-                  ),
+                trailing: IconButton(
+                  onPressed: () {
+                    context.push('/bookmark');
+                  },
+                  icon: const Icon(Icons.bookmark_border),
+                  color: Colors.deepPurple,
                 ),
-              ],
+              ),
             ),
           );
         }),

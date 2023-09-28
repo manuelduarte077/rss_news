@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rss_news/features/news/presentation/news_screen.dart';
 
 class BookmarkScreen extends StatelessWidget {
   const BookmarkScreen({super.key});
@@ -70,6 +69,7 @@ class _ListBookmark extends StatelessWidget {
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -81,35 +81,20 @@ class _ListBookmark extends StatelessWidget {
                 ),
               ],
             ),
-            child: Row(
+            child: Column(
               children: [
-                Hero(
-                  tag: 'image_$index',
-                  child: const ImageContainer(
-                    height: 80,
-                    width: 80,
-                    margin: EdgeInsets.all(10),
-                    imageUrl: 'https://picsum.photos/200/300',
-                  ),
+                Text(
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+                  style: theme.titleMedium,
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: theme.titleMedium,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.titleSmall,
-                      ),
-                    ],
-                  ),
+                const SizedBox(height: 10),
+                Text(
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.titleSmall,
                 ),
               ],
             ),
