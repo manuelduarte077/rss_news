@@ -100,10 +100,6 @@ class _DiscoverNews extends StatelessWidget {
               itemBuilder: (context) {
                 return [
                   const PopupMenuItem(
-                    value: 'add_rss',
-                    child: Text('Add RSS'),
-                  ),
-                  const PopupMenuItem(
                     value: 'list_rss',
                     child: Text('List RSS'),
                   ),
@@ -114,10 +110,6 @@ class _DiscoverNews extends StatelessWidget {
                 ];
               },
               onSelected: (value) {
-                if (value == 'add_rss') {
-                  context.push('/rss/add');
-                }
-
                 if (value == 'list_rss') {
                   context.push('/rss');
                 }

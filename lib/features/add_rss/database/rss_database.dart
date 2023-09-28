@@ -28,6 +28,8 @@ class DatabaseProvider {
 
     String path = join(docDirectory.path, 'todo.db');
 
+    print(path);
+
     await deleteDatabase(path);
 
     final database = await openDatabase(

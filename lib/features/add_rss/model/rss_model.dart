@@ -12,10 +12,10 @@ class RssModel {
   });
 
   factory RssModel.fromJson(Map<String, dynamic> json) => RssModel(
-        id: json['id'] as int?,
-        title: json['title'] as String?,
-        link: json['link'] as String?,
-        description: json['description'] as String?,
+        id: json['id'],
+        title: json['title'],
+        link: json['link'],
+        description: json['description'],
       );
 
   Map<String, dynamic> toJson() => {
