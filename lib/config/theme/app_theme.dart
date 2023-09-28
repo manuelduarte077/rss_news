@@ -8,7 +8,7 @@ class AppTheme {
     useMaterial3: true,
 
     /// Font Family
-    fontFamily: GoogleFonts.redHatDisplay().fontFamily,
+    fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
