@@ -76,7 +76,10 @@ class _CategoryNews extends StatelessWidget {
                 ),
                 trailing: IconButton(
                   onPressed: () {
-                    context.push('/bookmark');
+                    context.push(
+                      '/bookmark',
+                      extra: item,
+                    );
                   },
                   icon: const Icon(Icons.bookmark_border),
                   color: Colors.deepPurple,

@@ -26,7 +26,7 @@ class DatabaseProvider {
   Future<Database> createDatabase() async {
     Directory docDirectory = await getApplicationDocumentsDirectory();
 
-    String path = join(docDirectory.path, 'todo.db');
+    String path = join(docDirectory.path, 'rss.db');
 
     print(path);
 

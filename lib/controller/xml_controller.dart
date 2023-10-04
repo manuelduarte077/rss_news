@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:xml/xml.dart';
 import 'package:http/http.dart' as http;
+import 'package:xml/xpath.dart';
 
 class XMLHandler extends ChangeNotifier {
   late List<String> xml_urls = ['http://rss.cnn.com/rss/cnn_topstories.rss'];
@@ -21,6 +22,10 @@ class XMLHandler extends ChangeNotifier {
       var responseBody = request.body;
       var document = XmlDocument.parse(responseBody);
       var items = document.findAllElements('item');
+
+      var items2 = document.xpath('rss/channel/title').first.innerText;
+      print(items2);
+
       // Parse the response body into an XmlDocument object.
       var data = XmlDocument.parse(responseBody);
 
