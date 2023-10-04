@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:rss_news/controller/xml_controller.dart';
+import 'package:rss_news/features/bookmark/blocs/bookmark_bloc.dart';
+import 'package:rss_news/features/bookmark/model/bookmark_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> _launchInBrowser(Uri url) async {
@@ -76,13 +78,15 @@ class _CategoryNews extends StatelessWidget {
                 ),
                 trailing: IconButton(
                   onPressed: () {
-                    context.push(
-                      '/bookmark',
-                      extra: item,
+                    bookmarkBloc.addBookmarkTable(
+                      BookmarkModel(
+                        title: item['title']!,
+                        link: item['link']!,
+                      ),
                     );
+                    print('Bookmark added');
                   },
                   icon: const Icon(Icons.bookmark_border),
-                  color: Colors.deepPurple,
                 ),
               ),
             ),

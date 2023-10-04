@@ -4,6 +4,7 @@ import 'package:rss_news/config/router/app_router.dart';
 import 'package:rss_news/config/theme/app_theme.dart';
 import 'package:rss_news/controller/xml_controller.dart';
 import 'package:rss_news/features/add_rss/blocs/rss_bloc.dart';
+import 'package:rss_news/features/bookmark/blocs/bookmark_bloc.dart';
 
 class RssNews extends StatelessWidget {
   const RssNews({super.key});
@@ -11,6 +12,7 @@ class RssNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     rssBloc.getAllRss();
+    bookmarkBloc.getAllBookmark();
 
     return ChangeNotifierProvider(
       create: (_) => XMLHandler(),
